@@ -1,0 +1,14 @@
+{
+    "name": "applistic/ColorMe",
+    "description": "Client for the ColorMe API (Japanese E-Commerce platform)",
+    "keywords": ["ColorMe", "カラーミー"],
+    "license": "MIT",
+    "require": {
+        "guzzlehttp/guzzle": "4.*"
+    },
+    "autoload": {
+        "psr-4":{
+            "ColorMe\\": "src/"
+        }
+    }
+}
