@@ -12,40 +12,27 @@ namespace ColorMe;
 class Client
 {
 // ===== CONSTANTS =============================================================
-
-    const API_URL = "https://api.shop-pro.jp";
-    const EP_AUTHORIZE = "/oauth/authorize";
-
 // ===== STATIC PROPERTIES =====================================================
 // ===== STATIC FUNCTIONS ======================================================
 // ===== PROPERTIES ============================================================
 
     /**
-     * @var string The client ID of your application.
-     * @link http://api.shop-pro.jp/oauth/applications
+     * @var \ColorMe\Auth
      */
-    public $clientId;
-
-    /**
-     * @var string The client secret of your application.
-     * @link http://api.shop-pro.jp/oauth/applications
-     */
-    public $clientSecret;
-
-    /**
-     * @var string The URL where ColorMe will redirect the user after
-     *             authorization.
-     * @link http://api.shop-pro.jp/oauth/applications
-     */
-    public $redirectUri;
-
-    /**
-     * @var string The access token used to make API requests on behalf of the
-     *             user.
-     */
-    public $accessToken;
+    protected $auth;
 
 // ===== ACCESSORS =============================================================
+
+    /**
+     * Returns the authentication manager.
+     *
+     * @return \ColorMe\Auth
+     */
+    public function auth()
+    {
+        return $this->auth;
+    }
+
 // ===== CONSTRUCTOR ===========================================================
 
     public function __construct(
@@ -54,41 +41,16 @@ class Client
         $redirectUri,
         $accessToken = null
     ) {
-        $this->clientId = $clientId;
-        $this->clientSecret = $clientSecret;
-        $this->redirectUri = $redirectUri;
-        $this->accessToken = $accessToken;
+        $this->auth = new Auth(
+            $clientId,
+            $clientSecret,
+            $redirectUri,
+            $accessToken
+        );
     }
 
 // ===== PUBLIC METHODS ========================================================
 
-    /**
-     * Returns the URL where you should send the user for authorization.
-     *
-     * @param  array  $scope The permissions required by your application.
-     *                       Include one or many of the following:
-     *                       - read_products
-     *                       - write_products
-     *                       - read_sales
-     *                       - write_sales
-     * @return string
-     */
-    public function getAuthorizeUrl(array $scope)
-    {
-        $joinedScope = implode(" ", $scope);
-
-        $parameters = array(
-            'client_id=' . urlencode($this->clientId),
-            'response_type=code',
-            'scope=' . urlencode($joinedScope),
-            'redirect_uri=' . urlencode($this->redirectUri),
-        );
-
-        $url = self::API_URL . self::EP_AUTHORIZE
-             . "?" . implode("&", $parameters);
-
-        return $url;
-    }
 
 // ===== PROTECTED METHODS =====================================================
 // ===== PRIVATE METHODS =======================================================
