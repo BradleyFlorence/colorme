@@ -1,0 +1,255 @@
+Do you use Maven 3? Then you can use this repository:
+
+<repository>
+	<id>ColorMe-Repo</id>
+	<url>http://ci.dustplanet.de/plugin/repository/everything/</url>
+</repository>
+
+<dependency>
+	<groupId>de.dustplanet</groupId>
+	<artifactId>ColorMe</artifactId>
+	<version>3.8-SNAPSHOT</version>
+</dependency>
+To use the API create a new instance of Actions. You have to use the ColorMe instance, too!
+Below is a small example:
+
+import de.dustplanet.colorme.Actions
+
+Actions actions = new Actions((ColorMe) getServer().getPluginManager().getPlugin("ColorMe"));
+actions.createGroup("APITest");
+OR you use the alternate method of hooking into ColorMe:
+
+import de.dustplanet.de.colorme.Actions
+
+Actions actions = Actions.hookIntoColorMe();
+actions.createGroup("APITest");
+JavaDocs: Click
+
+/**
+ * Gets a value of a group
+ * @param groupName - the group name
+ * @param world - the world
+ * @param groupPart - the given plugin part
+ * @return the string from the config
+ */
+public String getGroup(String groupName, String world, String groupPart)
+
+/**
+ * Checks if a group has got a value
+ * @param groupName - the name of the group
+ * @param world - the world
+ * @param groupPart - the part (colors, prefix or suffix)
+ * @return yes or no
+ */
+public boolean hasGroup(String groupName, String world, String groupPart)
+
+/**
+ * Checks if a group exists
+ * @param groupName - the group name
+ * @return yes or no
+ */
+public boolean existsGroup(String groupName)
+
+/**
+ * Deletes a group
+ * @param groupName - the group Name
+ */
+public void deleteGroup(String groupName)
+
+/**
+ * Lists members of a group
+ * @param groupName - the groupName
+ * @return the list of members
+ */
+public List<String> listMembers(String groupName)
+
+/**
+ * Sets a value of a group in a world
+ * @param groupName - the name of the group
+ * @param value - the value (color, prefix or suffix)
+ * @param world - the world
+ * @param groupPart - the part
+ */
+public void setGroup(String groupName, String value, String world, String groupPart)
+
+/**
+ * Creates a group
+ * @param groupName - the group name
+ */
+public void createGroup(String groupName)
+
+/**
+ * Adds a member to a group
+ * @param groupName - the group name
+ * @param name - the player name
+ */
+public void addMember(String groupName, String name)
+
+/**
+ * Removes a member from a group
+ * @param groupName - the name of the group
+ * @param name - the name of the player
+ */
+public void removeMember(String groupName, String name)
+
+/**
+ * Checks if the member is member of a given group
+ * @param groupName - the name of the group
+ * @param name - the player name
+ * @return true or false, yes or no
+ */
+public boolean isMember(String groupName, String name)
+
+/**
+ * Gets the global part
+ * @param pluginPart - the part (color, suffix or prefix)
+ * @return the string from the config
+ */
+public String getGlobal(String pluginPart)
+
+/**
+ * Checks if the global values are used
+ * @param pluginPart - the part (color, suffix, prefix)
+ * @return yes or no
+ */
+public boolean hasGlobal(String pluginPart)
+
+/**
+ * Removes the global value
+ * @param pluginPart - color/prefix or suffix
+ */
+public void removeGlobal(String pluginPart)
+
+/**
+ * Checks if the player has got a group or not
+ * @param name - the player name
+ * @return yes or not
+ */
+public boolean playerHasGroup(String name)
+
+/**
+ * Returns the group of a player
+ * @param name - the player name
+ * @return the name of the group
+ */
+public String playerGetGroup(String name)
+
+/**
+ * Checks if the command sender is itself
+ * @param sender - the sender of the command
+ * @param name - the given name
+ * @return yes or no!
+ */
+public boolean self(CommandSender sender, String name)
+
+/**
+ * Returns the player color/suffix or prefix
+ * @param name - the player name
+ * @param world - the world
+ * @param pluginPart - the part
+ * @return the string out of the config! "" if not set!
+ */
+public String get(String name, String world, String pluginPart)
+
+/**
+ * Sets the players color, suffix or prefix
+ * @param name - the name
+ * @param value - the actual "value"
+ * @param world - the world
+ * @param pluginPart - colors/prefix/suffix
+ */
+public void set(String name, String value, String world, String pluginPart)
+
+/**
+ * Checks if the player has got a suffix/prefix or color
+ * @param name - the name of the player
+ * @param world - the world
+ * @param pluginPart - the part, prefix/suffix/colors
+ * @return true if the player has it or false if not
+ */
+public boolean has(String name, String world, String pluginPart)
+
+/** Removes the color/prefix/suffix of a player
+ * @param name - the player name
+ * @param world - the world
+ * @param pluginPart - the plugin part
+ */
+public void remove(String name, String world, String pluginPart)
+
+/**
+ * Creates a random color
+ * @param name of the player
+ * @return the updated name
+ */
+public String randomColor(String name)
+
+/**
+ * Creates a rainbow effect
+ * @param name of the player
+ * @return the updated name
+ */
+public String rainbowColor(String name)
+
+/**
+ * Creates the custom color effect
+ * @param color - the name of the color
+ * @param text - the text to color with
+ * @return the updated text
+ */
+public String updateCustomColor(String color, String text)
+
+/**
+ * Replaces all the colors
+ * @param string - the message
+ * @return the colorized message
+ */
+public String replaceThings(String string)
+
+/**
+ * Checks the names of a player
+ * @param name - the player name
+ * @param world - the world
+ */
+public void checkNames(String name, String world)
+
+/**
+ * Updates the display name, tab list or the name above the head of a player
+ * @param name - the name of the player
+ * @param color - the color
+ */
+public void updateName(String name, String color)
+
+/**
+ * Restores the name of a player to a clean white one
+ * @param name - the name of the player
+ */
+public void restoreName(String name)
+
+/**
+ * Checks if the config is recognized
+ * Possible are custom colors, random or rainbow and standard ones
+ * @param color - name of the color
+ * @return  the result - yes or no
+ */
+public boolean validColor(String color)
+
+/**
+ * Checks if the given color is disabled in the config
+ * @param color - name of the color
+ * @return Yes or no - disabled or not
+ */
+public boolean isDisabled(String color)
+
+/**
+ * Checks if the given color is a standard color
+ * @param color - name of the color
+ * @return Yes or no - whether the color is standard ore not
+ */
+public boolean isStandard(String color)
+
+/**
+ * Checks if a message contains a blacklisted word
+ * @param message you want to check
+ * @return null if nothing was found, otherwise the found word will be returned
+ */
+public String containsBlackListedWord(String message)
